@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 
 // custom packages
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:provider/provider.dart';
+
+// providers
+import 'package:bmi_calculator/providers/height_provider.dart';
+import 'package:bmi_calculator/providers/weight_provider.dart';
 
 // user made widgets
 import '../components/age_input.dart';
@@ -11,6 +16,7 @@ import '../components/sex_input.dart';
 
 // app pages
 import 'package:bmi_calculator/screens/result_page.dart';
+import 'package:bmi_calculator/utility/bmi_calculator.dart';
 
 class RootPage extends StatefulWidget {
   const RootPage({Key? key}) : super(key: key);
@@ -83,12 +89,22 @@ class _RootPageState extends State<RootPage> {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (BuildContext context) => const ResultPage(),
+                    builder: (BuildContext context) {
+                      var bmi = getBmi(context.watch<Weight>().weight,
+                          context.watch<Height>().height);
+
+                      var bmiDiag = getBmiDiagnostics(bmi);
+                      var words = bmiDiag.split("-");
+                      String category = words[0];
+                      String risk = words[1];
+                      return ResultPage(
+                          bmi: bmi, category: category, risk: risk);
+                    },
                   ),
                 );
               },
             ),
-          )
+          ),
         ],
       ),
     );
