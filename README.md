@@ -1,16 +1,17 @@
-# bmi_calculator
+# BMI Calculator
 
-A new Flutter project.
+A BMI calculator app with [Flutter](https://flutter.dev/).
 
-## Getting Started
+## Build
 
-This project is a starting point for a Flutter application.
+To build the app yourself, generate a keystore following [this](https://docs.flutter.dev/deployment/android#signing-the-app), name the file *upload-keystore.jks*, then run,
 
-A few resources to get you started if this is your first Flutter project:
+```
+flutter build appbundle 
+```
+or
+```
+flutter build apk --split-per-abi 
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+For more information, check [here](https://docs.flutter.dev/deployment/android#building-the-app-for-release).
